@@ -1,10 +1,10 @@
 // dbConfig.js
 export const dbConfig = {
-  HOST: "localhost",
+  HOST: "monorail.proxy.rlwy.net",
   USER: "root",
-  PASSWORD: "",
-  DB: "devloop",
-  PORT:"3306",
+  PASSWORD: "iWtzmFdqeywJprUldtdEcqJWmnEzSZeq",
+  DB: "railway",
+  PORT:"42068",
   dialect: "mysql",
   pool: {
       max: 5,
