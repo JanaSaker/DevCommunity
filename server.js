@@ -38,8 +38,8 @@ app.get("/", (req, res) => {
  res.json({ message: 'hello from api' });
 });
 
-app.listen(process.env.PORT, () => {
- console.log("server listening on port", process.env.PORT);
+app.listen(process.env.PORT_LOCAL, () => {
+ console.log("server listening on port", process.env.PORT_LOCAL);
 });
 
 // Routes
