@@ -9,12 +9,22 @@ import {createLangCVsModel} from "./langCvsModel.js";
 import {createLangJobModel} from "./langJobsModel.js";
 import {createKeyLangModel} from "./keylangsModel.js";
 import { createInsightModel } from "./insightsModel.js"; // Alias one of the createInsightModel imports
-import pg from "pg";
-
+// import pg from "pg";
 const sequelize = new Sequelize(
-    "postgres://postgres:eZmhbpPnm7Sb2U1D@xgmuuwkzotwnelwoqgdk.db.eu-central-1.nhost.run:5432/xgmuuwkzotwnelwoqgdk",
-    {
-      dialectModule: pg,
+    process.env.DB,
+    process.env.USER,
+    process.env.PASSWORD, {
+        host: process.env.HOST,
+        port: process.env.PORT,
+        dialect: dbConfig.dialect,
+        operatorAliases: false,
+
+        pool: {
+            max: dbConfig.pool.max,
+            min: dbConfig.pool.min,
+            acquire: dbConfig.pool.acquire,
+            idle: dbConfig.pool.idle
+        }
     }
 );
 
