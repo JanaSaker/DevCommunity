@@ -10,30 +10,16 @@ import {createLangJobModel} from "./langJobsModel.js";
 import {createKeyLangModel} from "./keylangsModel.js";
 import { createInsightModel } from "./insightsModel.js"; // Alias one of the createInsightModel imports
 // import pg from "pg";
-const sequelize = new Sequelize(
-    process.env.DB,
-    process.env.USER,
-    process.env.PASSWORD, {
-        host: process.env.HOST,
-        port: process.env.PORT,
-        dialect: dbConfig.dialect,
-        operatorAliases: false,
-
-        pool: {
-            max: dbConfig.pool.max,
-            min: dbConfig.pool.min,
-            acquire: dbConfig.pool.acquire,
-            idle: dbConfig.pool.idle
-        }
-    }
-);
-
-try {
-    await sequelize.authenticate();
-    console.log("Connected to the database");
-} catch (error) {
-    console.error("Error connecting: ", error);
-}
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+    host: dbConfig.HOST,
+    port: dbConfig.PORT,
+    dialect: dbConfig.dialect,
+    pool: dbConfig.pool,
+   });
+   
+   sequelize.authenticate()
+    .then(() => console.log('Connection has been established successfully.'))
+    .catch(error => console.error('Unable to connect to the database:', error));
 
 const db = {};
 
